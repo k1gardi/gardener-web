@@ -4,11 +4,18 @@ import path from "path";
 const app = express();
 const __dirname = path.resolve();
 app.use(express.static(path.join(__dirname, "./client/build")));
+app.use(express.json());
 
 app.get("/api/sample", (req, res) => {
-  var list = ["item1", "item2", "item3"];
-  res.json(list);
-  console.log("Sent list of items");
+  res.send("A message from CS361");
+  console.log("sent test");
+});
+
+app.post("/REST-API/post", (req, res) => {
+  console.log(req.body);
+  const key = Object.keys(req.body)[0];
+  console.log('key: ', key)
+  res.send(`posted: ${key}: ${req.body[key]}`);
 });
 
 app.get("/", (req, res) => {
