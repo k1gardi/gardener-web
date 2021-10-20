@@ -12,6 +12,7 @@
     "start:client": "npm run start --workspace=client",
     "build:client": "npm run-script build --workspace=client",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "test:firebase": "firebase emulators:start",
     "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   },
   "author": "",
