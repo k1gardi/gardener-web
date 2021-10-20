@@ -3,11 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "workspaces": [
+    "client",
+    "server"
+  ],
   "scripts": {
     "start": "node server/index.js",
     "start:client": "npm run --prefix ./client start",
-    "build": "npm run build:client",
-    "build:client": "npm run --prefix ./client build",
+    "build:client": "npm run build --workspace=client",
     "test": "echo \"Error: no test specified\" && exit 1",
     "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   },
