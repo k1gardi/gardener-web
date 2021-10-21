@@ -1,41 +1,43 @@
-import {Grid, Card, CardContent, Typography} from "@mui/material";
+import {Grid, Card, CardContent, Typography, Paper, Box} from "@mui/material";
 
 export const SensorData = () => {
   return (
     <div>
-      <div>
-        <h2>Sensor Data</h2>
-      </div>
-      <Grid container spacing={2}>
-        <Grid item xs={6}>
-          <Card>
-            <CardContent>
-              <Typography>Sensor 1</Typography>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item xs={6}>
-          <Card>
-            <CardContent>
-              <Typography>Sensor 2</Typography>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item xs={6}>
-          <Card>
-            <CardContent>
-              <Typography>Sensor 3</Typography>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item xs={6}>
-          <Card>
-            <CardContent>
-              <Typography>Sensor 4</Typography>
-            </CardContent>
-          </Card>
-        </Grid>
-      </Grid>
+      <h2>Sensor Data</h2>
+      <Paper elevation={24}>
+        <Box p={2}>
+          <Grid container spacing={2}>
+            <Grid item xs={6}>
+              <Card>
+                <CardContent>
+                  <Typography>Sensor 1</Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+            <Grid item xs={6}>
+              <Card>
+                <CardContent>
+                  <Typography>Sensor 2</Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+            <Grid item xs={6}>
+              <Card>
+                <CardContent>
+                  <Typography>Sensor 3</Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+            <Grid item xs={6}>
+              <Card>
+                <CardContent>
+                  <Typography>Sensor 4</Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+          </Grid>
+        </Box>
+      </Paper>
     </div>
   );
 };
