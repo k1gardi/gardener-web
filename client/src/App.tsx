@@ -8,7 +8,7 @@ import "./App.css";
 
 const darkTheme = createTheme({
   palette: {
-    mode: "dark",
+    mode: "light",
   },
 });
 
@@ -16,13 +16,11 @@ export const App = () => {
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
-      <div>
         {/* <header>
         </header> */}
         <WeatherForecast />
         <SensorData />
         <Controls />
-      </div>
     </ThemeProvider>
   );
 };
