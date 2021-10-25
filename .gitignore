@@ -104,5 +104,8 @@ dist
 # TernJS port file
 .tern-port
 
-# build
+# React build
 client/build
+
+# Git workflows
+.github/workflows
