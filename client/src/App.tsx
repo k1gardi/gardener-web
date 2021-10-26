@@ -1,5 +1,5 @@
 import {createTheme} from "@mui/material/styles";
-import {ThemeProvider} from "@mui/material";
+import {ThemeProvider, Container } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
 import {WeatherForecast} from "./components/weather-forecast";
 import {SensorData} from "./components/sensor-data";
@@ -11,6 +11,15 @@ const darkTheme = createTheme({
   palette: {
     mode: "dark",
   },
+  components: {
+    MuiCardContent:{
+      styleOverrides: {
+        root: {
+          padding: '0 0 0 0'
+        }
+      }
+    }
+  }
 });
 
 export const App = () => {
@@ -18,11 +27,15 @@ export const App = () => {
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <WeatherProvider>
+      <Container >
+
         {/* <header>
           </header> */}
         <WeatherForecast />
         <SensorData />
         <Controls />
+        </Container >
+
       </WeatherProvider>
     </ThemeProvider>
   );
