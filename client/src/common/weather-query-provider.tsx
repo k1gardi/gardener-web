@@ -1,8 +1,7 @@
 import {useState, createContext, useContext} from "react";
-import type {ReactNode, FunctionComponent, ReactElement} from "react";
+import type {ReactNode, FunctionComponent} from "react";
 import {
   useQuery,
-  useQueryClient,
   QueryClient,
   QueryClientProvider,
 } from "react-query";
@@ -31,7 +30,7 @@ const WeatherFetcher: FunctionComponent<{children?: ReactNode}> = ({
 
   useQuery("weather", mockWeather, {
     cacheTime: Infinity,
-    enabled: context.length == 0,
+    enabled: context.length === 0,
     onSuccess: (data) => {
       setContext(data);
     },
@@ -43,7 +42,7 @@ const WeatherFetcher: FunctionComponent<{children?: ReactNode}> = ({
   );
 };
 
-export const useCount = () => {
+export const useWeather = () => {
   const context = useContext(WeatherContext);
 
   if (context === undefined) {

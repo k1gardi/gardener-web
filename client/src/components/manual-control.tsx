@@ -1,7 +1,6 @@
-import {useRef, useState} from "react";
+import {useState} from "react";
 import type {ChangeEvent} from "react";
 import {
-  Paper,
   Box,
   Alert,
   TextField,
@@ -75,48 +74,43 @@ export const ManualTimer = () => {
   );
 
   return (
-    <div>
-      <h2>Controls</h2>
-      <Paper elevation={24}>
-        <Box p={2}>
-          <FormGroup row>
-            <TextField
-              helperText={inputError ? "Time must be <= 30 minutes" : ""}
-              error={inputError}
-              label="Duration"
-              type="number"
-              onChange={handleChange}
-              InputLabelProps={{
-                shrink: true,
-              }}
-              inputProps={{inputMode: "numeric", min: 1, pattern: "[0-9]"}}
-            />
-            {timerActive ? (
-              <Button variant="contained" color="error" onClick={handleAbort}>
-                Abort
-              </Button>
-            ) : (
-              <Button variant="contained" color="success" onClick={handleStart}>
-                Start
-              </Button>
-            )}
-            {timerActive && waterTime && (
-              <Countdown date={Date.now() + waterTime * 60 * 1000} />
-            )}
+    <Box p={2}>
+      <FormGroup row>
+        <TextField
+          helperText={inputError ? "Time must be <= 30 minutes" : ""}
+          error={inputError}
+          label="Duration"
+          type="number"
+          onChange={handleChange}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          inputProps={{inputMode: "numeric", min: 1, pattern: "[0-9]"}}
+        />
+        {timerActive ? (
+          <Button variant="contained" color="error" onClick={handleAbort}>
+            Abort
+          </Button>
+        ) : (
+          <Button variant="contained" color="success" onClick={handleStart}>
+            Start
+          </Button>
+        )}
+        {timerActive && waterTime && (
+          <Countdown date={Date.now() + waterTime * 60 * 1000} />
+        )}
 
-            <Snackbar
-              open={startSnackOn}
-              autoHideDuration={5000}
-              onClose={handleCloseSnack}
-              action={snackAction}
-            >
-              <Alert severity="success" onClose={handleCloseSnack}>
-                This is a success message!
-              </Alert>
-            </Snackbar>
-          </FormGroup>
-        </Box>
-      </Paper>
-    </div>
+        <Snackbar
+          open={startSnackOn}
+          autoHideDuration={5000}
+          onClose={handleCloseSnack}
+          action={snackAction}
+        >
+          <Alert severity="success" onClose={handleCloseSnack}>
+            This is a success message!
+          </Alert>
+        </Snackbar>
+      </FormGroup>
+    </Box>
   );
 };

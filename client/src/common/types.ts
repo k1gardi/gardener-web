@@ -1,4 +1,5 @@
 export interface WeatherData {
+    day: string;
     high: string;
     low: string;
     icon: string;
