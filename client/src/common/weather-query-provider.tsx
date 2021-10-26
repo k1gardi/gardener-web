@@ -7,8 +7,9 @@ import {
   QueryClientProvider,
 } from "react-query";
 import type {WeatherArray} from "client/src/common/types";
+import {mockWeather} from "./mock-weather";
 
-export type WeatherContext = WeatherArray | null;
+export type WeatherContext = WeatherArray;
 
 const WeatherContext = createContext<WeatherContext | undefined>(undefined);
 const queryClient = new QueryClient();
@@ -26,10 +27,17 @@ export const WeatherProvider: FunctionComponent<{children?: ReactNode}> = ({
 const WeatherFetcher: FunctionComponent<{children?: ReactNode}> = ({
   children,
 }) => {
-  const [context, setContext] = useState<WeatherContext>(null);
+  const [context, setContext] = useState<WeatherContext>([]);
+
+  useQuery("weather", mockWeather, {
+    cacheTime: Infinity,
+    enabled: context.length == 0,
+    onSuccess: (data) => {
+      setContext(data);
+    },
+  });
 
   const value = context;
-
   return (
     <WeatherContext.Provider value={value}>{children}</WeatherContext.Provider>
   );
