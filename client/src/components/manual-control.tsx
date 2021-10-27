@@ -2,27 +2,35 @@ import {useState} from "react";
 import type {ChangeEvent} from "react";
 import {
   Box,
+  Grid,
   Alert,
   TextField,
   FormGroup,
+  FormLabel,
   Button,
   Snackbar,
   IconButton,
+  Typography,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import Countdown from "react-countdown";
+import {useTimer} from "../common/use-timer";
 
 const validateInput = (minutes: string) => {
   const pattern = new RegExp(/^[0-9]*/);
   return minutes.match(pattern) && Number(minutes) <= 30;
 };
 
+const padZeros = (number: number) => {
+  return String(number).padStart(2, "0");
+};
+
 export const ManualTimer = () => {
   const [input, setInput] = useState<string | null>(null);
-  const [waterTime, setWaterTime] = useState<number>(0);
+  // const [waterTime, setWaterTime] = useState<number>(0);
   const [inputError, setInputError] = useState<boolean>(false);
   const [startSnackOn, setStartSnack] = useState<boolean>(false);
-  const [timerActive, setTimerActive] = useState<boolean>(false);
+  // const [timerActive, setTimerActive] = useState<boolean>(false);
+  const timer = useTimer();
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const rawinput = event.target.value;
@@ -32,14 +40,15 @@ export const ManualTimer = () => {
       setInput(rawinput);
     } else {
       setInputError(true);
+      setInput(rawinput);
     }
   };
 
   const handleStart = () => {
     if (input && validateInput(input)) {
       setStartSnack(true);
-      setTimerActive(true);
-      setWaterTime(Number(input));
+      timer.setTimer(Number(input));
+      timer.startTimer();
     } else {
       setInputError(true);
     }
@@ -48,7 +57,7 @@ export const ManualTimer = () => {
   const handleAbort = () => {
     // Todo: show abort snack
     setStartSnack(false);
-    setTimerActive(false);
+    timer.stopTimer();
   };
 
   const handleCloseSnack = (
@@ -75,42 +84,75 @@ export const ManualTimer = () => {
 
   return (
     <Box p={2}>
-      <FormGroup row>
-        <TextField
-          helperText={inputError ? "Time must be <= 30 minutes" : ""}
-          error={inputError}
-          label="Duration"
-          type="number"
-          onChange={handleChange}
-          InputLabelProps={{
-            shrink: true,
+      <Grid container spacing={2}>
+        <Grid
+          item
+          width="50%"
+          component="form"
+          sx={{
+            // "& .MuiTextField-root": {m: 1, width: "50%"},
+            "& .MuiFormGroup-row": {m: 1},
           }}
-          inputProps={{inputMode: "numeric", min: 1, pattern: "[0-9]"}}
-        />
-        {timerActive ? (
-          <Button variant="contained" color="error" onClick={handleAbort}>
-            Abort
-          </Button>
-        ) : (
-          <Button variant="contained" color="success" onClick={handleStart}>
-            Start
-          </Button>
-        )}
-        {timerActive && waterTime && (
-          <Countdown date={Date.now() + waterTime * 60 * 1000} />
-        )}
-
-        <Snackbar
-          open={startSnackOn}
-          autoHideDuration={5000}
-          onClose={handleCloseSnack}
-          action={snackAction}
         >
-          <Alert severity="success" onClose={handleCloseSnack}>
-            This is a success message!
-          </Alert>
-        </Snackbar>
-      </FormGroup>
+          <FormLabel sx={{marginBottom: "16px"}} component="legend">
+            Enter a time in minutes to water your garden for
+          </FormLabel>
+          <FormGroup
+            row
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
+            <TextField
+              helperText={inputError ? "Time must be <= 30 minutes" : ""}
+              error={inputError}
+              label="Duration"
+              type="number"
+              onChange={handleChange}
+              InputLabelProps={{
+                shrink: true,
+              }}
+              inputProps={{inputMode: "numeric", min: 1, pattern: "[0-9]"}}
+            />
+            {timer.isTimerActive ? (
+              <Button variant="contained" color="error" onClick={handleAbort}>
+                Abort
+              </Button>
+            ) : (
+              <Button variant="contained" color="success" onClick={handleStart}>
+                Start
+              </Button>
+            )}
+            <Snackbar
+              open={startSnackOn}
+              autoHideDuration={4000}
+              onClose={handleCloseSnack}
+              action={snackAction}
+            >
+              <Alert severity="success" onClose={handleCloseSnack}>
+                Timer succesfully started
+              </Alert>
+            </Snackbar>
+          </FormGroup>
+        </Grid>
+        {timer.isTimerActive ? (
+          <Grid
+            item
+            width="50%"
+            sx={{
+              textAlign: "center",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Typography variant="subtitle1" component="p">
+              {padZeros(timer.getMinutes())}:{padZeros(timer.getSeconds())}
+            </Typography>
+          </Grid>
+        ) : null}
+      </Grid>
     </Box>
   );
 };
