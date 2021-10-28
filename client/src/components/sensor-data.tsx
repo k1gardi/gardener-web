@@ -1,17 +1,20 @@
-import {Grid, Card, CardContent, Typography, Paper, Box} from "@mui/material";
+import {
+  // Grid,
+  // Card,
+  // CardContent,
+  Typography,
+  Paper,
+  Box} from "@mui/material";
 
 export const SensorData = () => {
   return (
-    <div>
+    <Box p={2}>
       <Typography variant="h3" component="h2">
         Sensor Data
       </Typography>
-      <Paper elevation={12}>
+      <Paper elevation={6}>
         <Box p={2}>
-          <Typography
-            variant="subtitle1"
-            component="p"
-          >
+          <Typography variant="subtitle1" component="p">
             Coming Soon!
           </Typography>
           {/* <Grid container spacing={2}>
@@ -46,6 +49,6 @@ export const SensorData = () => {
           </Grid> */}
         </Box>
       </Paper>
-    </div>
+    </Box>
   );
 };

@@ -1,25 +1,26 @@
 import {createTheme} from "@mui/material/styles";
-import {ThemeProvider, Container } from "@mui/material";
+import {ThemeProvider, Container, Typography, Paper, Box} from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
 import {WeatherForecast} from "./components/weather-forecast";
 import {SensorData} from "./components/sensor-data";
 import {Controls} from "./components/controls";
 import {WeatherProvider} from "./common/weather-query-provider";
 import "./App.css";
+import {TimerProvider} from "./common/use-timer";
 
 const darkTheme = createTheme({
   palette: {
-    mode: "dark",
+    mode: "light",
   },
   components: {
-    MuiCardContent:{
+    MuiCardContent: {
       styleOverrides: {
         root: {
-          padding: '0 0 0 0'
-        }
-      }
-    }
-  }
+          padding: "0 0 0 0",
+        },
+      },
+    },
+  },
 });
 
 export const App = () => {
@@ -27,15 +28,22 @@ export const App = () => {
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <WeatherProvider>
-      <Container >
-
-        {/* <header>
+        <TimerProvider>
+          <Container>
+            {/* <header>
           </header> */}
-        <WeatherForecast />
-        <SensorData />
-        <Controls />
-        </Container >
-
+            <Typography variant="h2" component="h1">
+              The Garden Project
+            </Typography>
+            <Paper elevation={24}>
+              <Box p={4}>
+                <WeatherForecast />
+                <SensorData />
+                <Controls />
+              </Box>
+            </Paper>
+          </Container>
+        </TimerProvider>
       </WeatherProvider>
     </ThemeProvider>
   );

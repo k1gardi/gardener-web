@@ -8,9 +8,9 @@ import {
 import type {WeatherArray} from "client/src/common/types";
 import {mockWeather} from "./mock-weather";
 
-export type WeatherContext = WeatherArray;
+export type WeatherContextType = WeatherArray;
 
-const WeatherContext = createContext<WeatherContext | undefined>(undefined);
+const WeatherContext = createContext<WeatherContextType | undefined>(undefined);
 const queryClient = new QueryClient();
 
 export const WeatherProvider: FunctionComponent<{children?: ReactNode}> = ({
@@ -26,7 +26,7 @@ export const WeatherProvider: FunctionComponent<{children?: ReactNode}> = ({
 const WeatherFetcher: FunctionComponent<{children?: ReactNode}> = ({
   children,
 }) => {
-  const [context, setContext] = useState<WeatherContext>([]);
+  const [context, setContext] = useState<WeatherContextType>([]);
 
   useQuery("weather", mockWeather, {
     cacheTime: Infinity,
@@ -46,7 +46,7 @@ export const useWeather = () => {
   const context = useContext(WeatherContext);
 
   if (context === undefined) {
-    throw new Error("useCount must be used within a WeatherContext");
+    throw new Error("useWeather must be used within a WeatherContext");
   }
   return context;
 };

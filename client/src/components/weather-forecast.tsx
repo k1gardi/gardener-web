@@ -13,11 +13,11 @@ export const WeatherForecast = () => {
   const weatherData = useWeather();
 
   return (
-    <div>
+    <Box p={2}>
       <Typography variant="h3" component="h2">
         Weather Forecast
       </Typography>
-      <Paper elevation={12}>
+      <Paper elevation={6}>
         <Box p={2}>
           <Grid container spacing={1}>
             {weatherData.length === 0 ? (
@@ -85,6 +85,6 @@ export const WeatherForecast = () => {
           </Grid>
         </Box>
       </Paper>
-    </div>
+    </Box>
   );
 };
