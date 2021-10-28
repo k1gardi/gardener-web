@@ -26,10 +26,9 @@ const padZeros = (number: number) => {
 
 export const ManualTimer = () => {
   const [input, setInput] = useState<string | null>(null);
-  // const [waterTime, setWaterTime] = useState<number>(0);
   const [inputError, setInputError] = useState<boolean>(false);
   const [startSnackOn, setStartSnack] = useState<boolean>(false);
-  // const [timerActive, setTimerActive] = useState<boolean>(false);
+
   const timer = useTimer();
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {

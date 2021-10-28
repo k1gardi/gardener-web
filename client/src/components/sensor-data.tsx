@@ -8,11 +8,11 @@ import {
 
 export const SensorData = () => {
   return (
-    <div>
+    <Box p={2}>
       <Typography variant="h3" component="h2">
         Sensor Data
       </Typography>
-      <Paper elevation={12}>
+      <Paper elevation={6}>
         <Box p={2}>
           <Typography variant="subtitle1" component="p">
             Coming Soon!
@@ -49,6 +49,6 @@ export const SensorData = () => {
           </Grid> */}
         </Box>
       </Paper>
-    </div>
+    </Box>
   );
 };
