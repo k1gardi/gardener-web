@@ -1,4 +1,4 @@
-import {useState, useEffect, useContext, createContext} from "react";
+import {useState, useEffect, useContext, createContext, useCallback} from "react";
 import type {FunctionComponent, ReactNode} from "react";
 
 export interface TimerContextType {
@@ -36,14 +36,14 @@ export const TimerProvider: FunctionComponent<{children: ReactNode}> = ({
     return Math.floor(totalSeconds / 60);
   };
 
-  const updateTime = () => {
+  const updateTime = useCallback(() => {
     if (totalSeconds === 0) {
       setTotalSeconds(0);
       setIsTimerActive(false);
     } else {
       setTotalSeconds((totalSeconds) => totalSeconds - 1);
     }
-  };
+  }, [totalSeconds]);
 
   useEffect(() => {
     if (isTimerActive) {

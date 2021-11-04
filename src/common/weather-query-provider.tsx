@@ -5,7 +5,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from "react-query";
-import type {WeatherArray} from "client/src/common/types";
+import type {WeatherArray} from "./types";
 import {mockWeather} from "./mock-weather";
 
 export type WeatherContextType = WeatherArray;
