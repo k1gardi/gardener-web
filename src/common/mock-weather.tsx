@@ -1,5 +1,5 @@
-import type {WeatherArray} from 'client/src/common/types';
-import icon from 'client/src/assets/sunny.png';
+import type {WeatherArray} from './types';
+import icon from '../assets/sunny.png';
 
 export const mockWeather = () => {
   return Promise.resolve(([
