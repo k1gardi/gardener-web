@@ -7,6 +7,20 @@ import {Controls} from "./components/controls";
 import {WeatherProvider} from "./common/weather-query-provider";
 import "./App.css";
 import {TimerProvider} from "./common/use-timer";
+// import {FirebaseProvider} from "./common/firebase-provider";
+// import {initializeApp} from "firebase/app";
+// import {getDatabase, ref, get, child} from "firebase/database";
+// import {firebaseConfig} from "./common/firebase-config";
+
+// const firebaseApp = initializeApp(firebaseConfig);
+// const database = getDatabase(firebaseApp);
+// const databaseRef = ref(database);
+
+// export const useFirebaseConfig = () => ({
+//   firebaseApp,
+//   database,
+//   databaseRef,
+// });
 
 const darkTheme = createTheme({
   palette: {
@@ -28,22 +42,24 @@ export const App = () => {
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <WeatherProvider>
-        <TimerProvider>
-          <Container>
-            {/* <header>
+        {/* <FirebaseProvider> */}
+          <TimerProvider>
+            <Container>
+              {/* <header>
           </header> */}
-            <Typography variant="h2" component="h1">
-              The Garden Project
-            </Typography>
-            <Paper elevation={24}>
-              <Box p={4}>
-                <WeatherForecast />
-                <SensorData />
-                <Controls />
-              </Box>
-            </Paper>
-          </Container>
-        </TimerProvider>
+              <Typography variant="h2" component="h1">
+                The Garden Project
+              </Typography>
+              <Paper elevation={24}>
+                <Box p={4}>
+                  <WeatherForecast />
+                  <SensorData />
+                  <Controls />
+                </Box>
+              </Paper>
+            </Container>
+          </TimerProvider>
+        {/* </FirebaseProvider> */}
       </WeatherProvider>
     </ThemeProvider>
   );

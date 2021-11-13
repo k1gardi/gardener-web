@@ -1,10 +1,7 @@
 import {useState, createContext, useContext} from "react";
 import type {ReactNode, FunctionComponent} from "react";
-import {
-  useQuery,
-  QueryClient,
-  QueryClientProvider,
-} from "react-query";
+import axios from "axios";
+import {useQuery, QueryClient, QueryClientProvider} from "react-query";
 import type {WeatherArray} from "./types";
 import {mockWeather} from "./mock-weather";
 
@@ -28,13 +25,37 @@ const WeatherFetcher: FunctionComponent<{children?: ReactNode}> = ({
 }) => {
   const [context, setContext] = useState<WeatherContextType>([]);
 
-  useQuery("weather", mockWeather, {
-    cacheTime: Infinity,
-    enabled: context.length === 0,
-    onSuccess: (data) => {
-      setContext(data);
-    },
-  });
+  useQuery(
+    "weather",
+    // mockWeather,
+    () =>
+      axios
+        .get<WeatherArray>("http://flip2.engr.oregonstate.edu:1210", {
+          params: {
+            zip: "98330",
+          },
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+          },
+        })
+        .then((res) => {
+          console.log("res: ", res);
+          return res.data;
+        })
+        .catch((e) => {
+          console.log(e);
+          console.log("res code: ", e.response);
+        }),
+    {
+      cacheTime: Infinity,
+      enabled: context.length === 0,
+      onSuccess: (data) => {
+        if (data) {
+          setContext(data);
+        }
+      },
+    }
+  );
 
   const value = context;
   return (

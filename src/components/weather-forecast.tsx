@@ -58,7 +58,7 @@ export const WeatherForecast = () => {
                               component="p"
                               sx={{textAlign: "right"}}
                             >
-                              Hi: {day.high}
+                              High: {day.high}
                             </Typography>
                             <Typography
                               variant="subtitle2"
@@ -74,7 +74,7 @@ export const WeatherForecast = () => {
                           component="p"
                           style={{margin: 0, textAlign: "center"}}
                         >
-                          Precipitation: {day.precip}
+                          Precipitation: {day.precipitation}
                         </Typography>
                       </CardContent>
                     </Card>
