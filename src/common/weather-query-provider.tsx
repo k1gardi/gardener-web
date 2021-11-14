@@ -37,11 +37,15 @@ const WeatherFetcher: FunctionComponent<{children?: ReactNode}> = ({
           headers: {
             "Access-Control-Allow-Origin": "*",
           },
+          timeout: 600,
         })
         .then((res) => {
+          console.log('no error')
           return res.data;
         })
         .catch((e) => {
+          console.log('fetch error')
+
           // just return mock data if there's an error.
           // Likely cause is we are off-VPN
           console.warn(e);
@@ -50,7 +54,14 @@ const WeatherFetcher: FunctionComponent<{children?: ReactNode}> = ({
     {
       cacheTime: Infinity,
       enabled: context.length === 0,
+      onError: async () => {
+        console.log('on error')
+        const data = await mockWeather()
+        setContext(data);
+      },
       onSuccess: (data) => {
+        console.log('onSuccess: ', data)
+
         if (data) {
           setContext(data);
         }
