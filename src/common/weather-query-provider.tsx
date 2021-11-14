@@ -32,19 +32,20 @@ const WeatherFetcher: FunctionComponent<{children?: ReactNode}> = ({
       axios
         .get<WeatherArray>("http://flip2.engr.oregonstate.edu:1210", {
           params: {
-            zip: "98330",
+            zip: "77494",
           },
           headers: {
             "Access-Control-Allow-Origin": "*",
           },
         })
         .then((res) => {
-          console.log("res: ", res);
           return res.data;
         })
         .catch((e) => {
-          console.log(e);
-          console.log("res code: ", e.response);
+          // just return mock data if there's an error.
+          // Likely cause is we are off-VPN
+          console.warn(e);
+          return mockWeather();
         }),
     {
       cacheTime: Infinity,

@@ -4,35 +4,35 @@ import icon from '../assets/sunny.png';
 export const mockWeather = () => {
   return Promise.resolve(([
     {
-      day: "Monday",
+      date: "Monday",
       high: "80",
       low: "60",
       icon: icon,
       precipitation: "15%",
     },
     {
-      day: "Tuesday",
+      date: "Tuesday",
       high: "80",
       low: "60",
       icon: icon,
       precipitation: "15%",
     },
     {
-      day: "Wednesday",
+      date: "Wednesday",
       high: "80",
       low: "60",
       icon: icon,
       precipitation: "15%",
     },
     {
-      day: "Thursday",
+      date: "Thursday",
       high: "80",
       low: "60",
       icon: icon,
       precipitation: "15%",
     },
     {
-      day: "Friday",
+      date: "Friday",
       high: "80",
       low: "60",
       icon: icon,

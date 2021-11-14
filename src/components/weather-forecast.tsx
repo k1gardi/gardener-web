@@ -8,6 +8,22 @@ import {
   CardHeader,
 } from "@mui/material";
 import {useWeather} from "../common/weather-query-provider";
+import placeholderIcon from "../assets/sunny.png";
+
+const months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
 
 export const WeatherForecast = () => {
   const weatherData = useWeather();
@@ -25,10 +41,10 @@ export const WeatherForecast = () => {
             ) : (
               weatherData.map((day, index) => {
                 return (
-                  <Grid item width="20%" key={`weather-card-${index}`} >
+                  <Grid item width="20%" key={`weather-card-${index}`}>
                     <Card>
                       <CardHeader
-                        title={day.day}
+                        title={`${months[(day.date.slice(5, 7) as unknown as number) - 1]} ${day.date.slice(-2)}`}
                         sx={{padding: "8px 8px 8px 8px", textAlign: "center"}}
                       />
                       <CardContent
@@ -48,7 +64,7 @@ export const WeatherForecast = () => {
                           }}
                         >
                           <img
-                            src={day.icon}
+                            src={placeholderIcon}
                             alt=""
                             style={{objectFit: "contain"}}
                           />
