@@ -7,20 +7,20 @@ import {Controls} from "./components/controls";
 import {WeatherProvider} from "./common/weather-query-provider";
 import "./App.css";
 import {TimerProvider} from "./common/use-timer";
-// import {FirebaseProvider} from "./common/firebase-provider";
-// import {initializeApp} from "firebase/app";
-// import {getDatabase, ref, get, child} from "firebase/database";
-// import {firebaseConfig} from "./common/firebase-config";
+import {FirebaseProvider} from "./common/firebase-provider";
+import {initializeApp} from "firebase/app";
+import {getDatabase, ref} from "firebase/database";
+import {firebaseConfig} from "./common/firebase-config";
 
-// const firebaseApp = initializeApp(firebaseConfig);
-// const database = getDatabase(firebaseApp);
-// const databaseRef = ref(database);
+const firebaseApp = initializeApp(firebaseConfig);
+const database = getDatabase(firebaseApp);
+const databaseRef = ref(database);
 
-// export const useFirebaseConfig = () => ({
-//   firebaseApp,
-//   database,
-//   databaseRef,
-// });
+export const useFirebaseConfig = () => ({
+  firebaseApp,
+  database,
+  databaseRef,
+});
 
 const darkTheme = createTheme({
   palette: {
@@ -42,7 +42,7 @@ export const App = () => {
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <WeatherProvider>
-        {/* <FirebaseProvider> */}
+        <FirebaseProvider>
           <TimerProvider>
             <Container>
               {/* <header>
@@ -59,7 +59,7 @@ export const App = () => {
               </Paper>
             </Container>
           </TimerProvider>
-        {/* </FirebaseProvider> */}
+        </FirebaseProvider>
       </WeatherProvider>
     </ThemeProvider>
   );

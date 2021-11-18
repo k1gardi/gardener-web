@@ -1,12 +1,17 @@
 import {
-  // Grid,
-  // Card,
-  // CardContent,
+  Grid,
+  Card,
+  CardContent,
   Typography,
   Paper,
-  Box} from "@mui/material";
+  Box,
+  CardHeader,
+} from "@mui/material";
+import {useFirebase} from "../common/firebase-provider";
 
 export const SensorData = () => {
+  const {sensorData} = useFirebase();
+
   return (
     <Box p={2}>
       <Typography variant="h3" component="h2">
@@ -14,39 +19,24 @@ export const SensorData = () => {
       </Typography>
       <Paper elevation={6}>
         <Box p={2}>
-          <Typography variant="subtitle1" component="p">
-            Coming Soon!
-          </Typography>
-          {/* <Grid container spacing={2}>
-            <Grid item width="50%">
-              <Card>
-                <CardContent>
-                  <Typography>Sensor 1</Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-            <Grid item width="50%">
-              <Card>
-                <CardContent>
-                  <Typography>Sensor 2</Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-            <Grid item width="50%">
-              <Card>
-                <CardContent>
-                  <Typography>Sensor 3</Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-            <Grid item width="50%">
-              <Card>
-                <CardContent>
-                  <Typography>Sensor 4</Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-          </Grid> */}
+          <Grid container spacing={2}>
+            {sensorData ? (
+              sensorData.map((data) => (
+                <Grid item  key={data.sensorName}>
+                  <Card>
+                    <CardHeader title={data.sensorName} subheader={data.timeStamp}/>
+                    <CardContent sx={{padding: "16px 16px 24px 16px"}}>
+                      <Typography variant="body1">{data.measurement}</Typography>
+                    </CardContent>
+                  </Card>
+                </Grid>
+              ))
+            ) : (
+              <Typography variant="subtitle1" component="p">
+                Sensor data unavailable
+              </Typography>
+            )}
+          </Grid>
         </Box>
       </Paper>
     </Box>
