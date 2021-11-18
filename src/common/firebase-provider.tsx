@@ -1,11 +1,9 @@
-import {useState, createContext, useContext, useMemo} from "react";
+import {useState, createContext, useContext} from "react";
 import type {ReactNode, FunctionComponent} from "react";
-import type {FirebaseApp} from "firebase/app";
 import {get, child} from "firebase/database";
-import type {Database} from "firebase/database";
 import type {SensorData} from "./types";
 import {useQuery} from "react-query";
-//import {useFirebaseConfig} from "../App";
+import {useFirebaseConfig} from "../App";
 
 export interface FirebaseContextType {
   sensorData: SensorData[];
