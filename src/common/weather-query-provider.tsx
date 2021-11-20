@@ -37,7 +37,7 @@ const WeatherFetcher: FunctionComponent<{children?: ReactNode}> = ({
           headers: {
             "Access-Control-Allow-Origin": "*",
           },
-          timeout: 600,
+          timeout: 1000,
         })
         .then((res) => {
           return res.data;

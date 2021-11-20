@@ -1,8 +1,8 @@
 export interface WeatherData {
   date: string;
-  high: string;
-  low: string;
-  icon: string;
+  high: number;
+  low: number;
+  icon: number;
   precipitation: string;
 }
 

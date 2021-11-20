@@ -8,7 +8,10 @@ import {
   CardHeader,
 } from "@mui/material";
 import {useWeather} from "../common/weather-query-provider";
-import placeholderIcon from "../assets/sunny.png";
+import sunnyIcon from "../assets/sunny.png";
+import cloudyIcon from "../assets/cloudy.png";
+import partlyCloudyIcon from "../assets/partly-cloudy.png";
+import rainyIcon from "../assets/rainy.png";
 
 const months = [
   "January",
@@ -25,6 +28,19 @@ const months = [
   "December",
 ];
 
+const getWeatherIcon = (iconId: number) => {
+  if (iconId <= 5) {
+    return sunnyIcon;
+  }
+  if (iconId <= 11) {
+    return cloudyIcon;
+  }
+  if (iconId <= 18) {
+    return rainyIcon;
+  }
+  return partlyCloudyIcon;
+};
+
 export const WeatherForecast = () => {
   const weatherData = useWeather();
 
@@ -37,14 +53,18 @@ export const WeatherForecast = () => {
         <Box p={2}>
           <Grid container spacing={1}>
             {weatherData.length === 0 ? (
-              <Typography>Unable to fetch weather data</Typography>
+              <Typography>No weather data found</Typography>
             ) : (
               weatherData.map((day, index) => {
                 return (
                   <Grid item width="20%" key={`weather-card-${index}`}>
                     <Card>
                       <CardHeader
-                        title={`${months[(day.date.slice(5, 7) as unknown as number) - 1]} ${day.date.slice(-2)}`}
+                        title={`${
+                          months[
+                            (day.date.slice(5, 7) as unknown as number) - 1
+                          ]
+                        } ${day.date.slice(-2)}`}
                         sx={{padding: "8px 8px 8px 8px", textAlign: "center"}}
                       />
                       <CardContent
@@ -64,7 +84,7 @@ export const WeatherForecast = () => {
                           }}
                         >
                           <img
-                            src={placeholderIcon}
+                            src={getWeatherIcon(day.icon)}
                             alt=""
                             style={{objectFit: "contain"}}
                           />
