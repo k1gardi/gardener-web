@@ -12,7 +12,7 @@ export const Controls = () => {
   const toggleAutoMode = useCallback(() => {
     setAutoMode(!autoMode);
     stopTimer()
-  }, [autoMode]);
+  }, [autoMode, stopTimer]);
 
   return (
     <Box p={2}>

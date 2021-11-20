@@ -7,15 +7,6 @@ import {
   Stack,
 } from "@mui/material";
 
-const validateInput = (minutes: string) => {
-  const pattern = new RegExp(/^[0-9]*/);
-  return minutes.match(pattern) && Number(minutes) <= 30;
-};
-
-const padZeros = (number: number) => {
-  return String(number).padStart(2, "0");
-};
-
 export const AutoWater: FunctionComponent<{
   autoMode: boolean;
   toggleAutoMode: () => void;
