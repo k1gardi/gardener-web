@@ -88,7 +88,7 @@ export const WeatherForecast = () => {
                             alt=""
                             style={{objectFit: "contain"}}
                           />
-                          <div style={{}}>
+                          <div>
                             <Typography
                               variant="subtitle2"
                               component="p"
