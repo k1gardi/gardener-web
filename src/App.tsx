@@ -1,6 +1,7 @@
 import {createTheme} from "@mui/material/styles";
 import {ThemeProvider, Container, Typography, Paper, Box} from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
+import {UseSwitchesCustom} from './components/theme-toggle';
 import {WeatherForecast} from "./components/weather-forecast";
 import {SensorData} from "./components/sensor-data";
 import {Controls} from "./components/controls";
@@ -11,6 +12,7 @@ import {FirebaseProvider} from "./common/firebase-provider";
 import {initializeApp} from "firebase/app";
 import {getDatabase, ref} from "firebase/database";
 import {firebaseConfig} from "./common/firebase-config";
+import {useCallback, useState} from "react";
 
 const firebaseApp = initializeApp(firebaseConfig);
 const database = getDatabase(firebaseApp);
@@ -22,10 +24,7 @@ export const useFirebaseConfig = () => ({
   databaseRef,
 });
 
-const darkTheme = createTheme({
-  palette: {
-    mode: "light",
-  },
+const universalThemes = {
   components: {
     MuiCardContent: {
       styleOverrides: {
@@ -35,11 +34,30 @@ const darkTheme = createTheme({
       },
     },
   },
+};
+const lightTheme = createTheme({
+  ...universalThemes,
+  palette: {
+    mode: "light",
+  },
+});
+const darkTheme = createTheme({
+  ...universalThemes,
+  palette: {
+    mode: "dark",
+  },
 });
 
 export const App = () => {
+  const [darkMode, setDarkMode] = useState<boolean>(false);
+
+  const handleToggleTheme = useCallback(() => {
+    setDarkMode(!darkMode);
+    console.log(darkMode);
+  }, [darkMode]);
+
   return (
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
       <CssBaseline />
       <WeatherProvider>
         <FirebaseProvider>
@@ -50,6 +68,7 @@ export const App = () => {
               <Typography variant="h2" component="h1">
                 The Garden Project
               </Typography>
+              <UseSwitchesCustom checked={darkMode} onChange={handleToggleTheme}/>
               <Paper elevation={24}>
                 <Box p={4}>
                   <WeatherForecast />
