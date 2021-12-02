@@ -1,7 +1,7 @@
 import {createTheme} from "@mui/material/styles";
 import {ThemeProvider, Container, Typography, Paper, Box} from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
-import {UseSwitchesCustom} from './components/theme-toggle';
+import {UseSwitchesCustom} from "./components/theme-toggle";
 import {WeatherForecast} from "./components/weather-forecast";
 import {SensorData} from "./components/sensor-data";
 import {Controls} from "./components/controls";
@@ -63,12 +63,15 @@ export const App = () => {
         <FirebaseProvider>
           <TimerProvider>
             <Container>
-              {/* <header>
-          </header> */}
-              <Typography variant="h2" component="h1">
-                The Garden Project
-              </Typography>
-              <UseSwitchesCustom checked={darkMode} onChange={handleToggleTheme}/>
+              <header>
+                <Typography variant="h2" component="h1">
+                  The Garden Project
+                </Typography>
+                <UseSwitchesCustom
+                  checked={darkMode}
+                  onChange={handleToggleTheme}
+                />
+              </header>
               <Paper elevation={24}>
                 <Box p={4}>
                   <WeatherForecast />

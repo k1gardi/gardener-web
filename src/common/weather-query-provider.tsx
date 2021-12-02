@@ -27,7 +27,6 @@ const WeatherFetcher: FunctionComponent<{children?: ReactNode}> = ({
 
   useQuery(
     "weather",
-    // mockWeather,
     () =>
       axios
         .get<WeatherArray>("http://flip2.engr.oregonstate.edu:1210", {
@@ -52,7 +51,7 @@ const WeatherFetcher: FunctionComponent<{children?: ReactNode}> = ({
       cacheTime: Infinity,
       enabled: context.length === 0,
       onError: async () => {
-        const data = await mockWeather()
+        const data = await mockWeather();
         setContext(data);
       },
       onSuccess: (data) => {

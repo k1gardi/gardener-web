@@ -1,11 +1,6 @@
 import type {FunctionComponent} from "react";
 import {styled} from "@mui/material/styles";
-import {
-  Box,
-  Typography,
-  Switch,
-  Stack,
-} from "@mui/material";
+import {Box, Typography, Switch, Stack} from "@mui/material";
 
 export const AutoWater: FunctionComponent<{
   autoMode: boolean;
@@ -13,9 +8,15 @@ export const AutoWater: FunctionComponent<{
 }> = ({autoMode, toggleAutoMode}) => {
   return (
     <Box p={2}>
-      <Typography component="h3">Toggle your smart garden's automatic scheduler</Typography>
-
-      <Stack direction="row" spacing={1} alignItems="center" sx={{paddingTop: "16px",}}>
+      <Typography component="h3">
+        Toggle your smart garden's automatic scheduler
+      </Typography>
+      <Stack
+        direction="row"
+        spacing={1}
+        alignItems="center"
+        sx={{paddingTop: "16px"}}
+      >
         <Typography>Off</Typography>
         <AntSwitch
           checked={autoMode}

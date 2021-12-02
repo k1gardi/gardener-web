@@ -11,7 +11,7 @@ export const Controls = () => {
 
   const toggleAutoMode = useCallback(() => {
     setAutoMode(!autoMode);
-    stopTimer()
+    stopTimer();
   }, [autoMode, stopTimer]);
 
   return (
@@ -20,7 +20,7 @@ export const Controls = () => {
         Controls
       </Typography>
       <Paper elevation={6}>
-        <AutoWater autoMode={autoMode} toggleAutoMode={toggleAutoMode}/>
+        <AutoWater autoMode={autoMode} toggleAutoMode={toggleAutoMode} />
         {!autoMode && <ManualTimer />}
       </Paper>
     </Box>
