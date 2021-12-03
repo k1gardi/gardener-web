@@ -9,7 +9,7 @@ export interface WeatherData {
 export interface SensorData {
   sensorName: string;
   measurement: string;
-	timeStamp: Date;
+  timeStamp: Date;
 }
 
 export type WeatherArray = WeatherData[];

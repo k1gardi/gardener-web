@@ -22,11 +22,16 @@ export const SensorData = () => {
           <Grid container spacing={2}>
             {sensorData ? (
               sensorData.map((data) => (
-                <Grid item  key={data.sensorName}>
+                <Grid item key={data.sensorName}>
                   <Card>
-                    <CardHeader title={data.sensorName} subheader={data.timeStamp}/>
+                    <CardHeader
+                      title={data.sensorName}
+                      subheader={data.timeStamp}
+                    />
                     <CardContent sx={{padding: "16px 16px 24px 16px"}}>
-                      <Typography variant="body1">{data.measurement}</Typography>
+                      <Typography variant="body1">
+                        {data.measurement}
+                      </Typography>
                     </CardContent>
                   </Card>
                 </Grid>

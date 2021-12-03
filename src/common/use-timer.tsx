@@ -1,4 +1,10 @@
-import {useState, useEffect, useContext, createContext, useCallback} from "react";
+import {
+  useState,
+  useEffect,
+  useContext,
+  createContext,
+  useCallback,
+} from "react";
 import type {FunctionComponent, ReactNode} from "react";
 
 export interface TimerContextType {
