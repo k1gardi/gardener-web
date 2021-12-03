@@ -1,7 +1,7 @@
-import type {WeatherArray} from './types';
+import type {WeatherArray} from "./types";
 
 export const mockWeather = () => {
-  return Promise.resolve(([
+  return Promise.resolve([
     {
       date: "2021-11-15",
       high: 80,
@@ -37,5 +37,5 @@ export const mockWeather = () => {
       icon: 1,
       precipitation: "15%",
     },
-  ]) as WeatherArray);
+  ] as WeatherArray);
 };

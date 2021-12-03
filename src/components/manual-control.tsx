@@ -17,7 +17,7 @@ import {useTimer} from "../common/use-timer";
 
 const validateInput = (minutes: string) => {
   const pattern = new RegExp(/^[0-9]*/);
-  return minutes.match(pattern) && Number(minutes) <= 30;
+  return minutes.match(pattern) && Number(minutes) <= 30 && Number(minutes) > 0;
 };
 
 const padZeros = (number: number) => {
@@ -83,6 +83,9 @@ export const ManualTimer = () => {
 
   return (
     <Box p={2}>
+      <Typography component="h3" sx={{paddingBottom: "16px"}}>
+        Enter a time in minutes to water your garden for
+      </Typography>
       <Grid container spacing={2}>
         <Grid
           item
@@ -93,9 +96,9 @@ export const ManualTimer = () => {
             "& .MuiFormGroup-row": {m: 1},
           }}
         >
-          <FormLabel sx={{marginBottom: "16px"}} component="legend">
+          {/* <FormLabel sx={{marginBottom: "16px"}} component="legend">
             Enter a time in minutes to water your garden for
-          </FormLabel>
+          </FormLabel> */}
           <FormGroup
             row
             sx={{
@@ -146,7 +149,7 @@ export const ManualTimer = () => {
               alignItems: "center",
             }}
           >
-            <Typography variant="subtitle1" component="p">
+            <Typography variant="subtitle1" component="p" sx={{}}>
               {padZeros(timer.getMinutes())}:{padZeros(timer.getSeconds())}
             </Typography>
           </Grid>
